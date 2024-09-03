@@ -2,5 +2,5 @@
 
 <template>
     <Head :title="` | ${$page.component}`" />
-    <h1>{{ $page.props.user }}</h1>
+    <h1>Home page</h1>
 </template>
