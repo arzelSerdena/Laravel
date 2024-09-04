@@ -11,6 +11,7 @@
                     <Link :href="route('register')" class="nav-link"
                         >Register</Link
                     >
+                    <Link :href="route('login')" class="nav-link">Login</Link>
                 </div>
             </nav>
         </header>
