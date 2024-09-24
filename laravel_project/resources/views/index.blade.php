@@ -16,20 +16,24 @@
             font-family: 'Poppins'
         }
     </style>
-    <header class="bg-[#030712] grid grid-cols-12 max-w-full items-center h-20 px-10 sticky inset-x-0">
-        <div class="col-span-2">
-            <a href="/" class="text-white font-semibold text-2xl">Project.</a>
-            
-        </div>
-        <div class="col-span-10 flex justify-end gap-10">
-            <a href="/login" class="text-white font-medium">Login</a>
-            <a href="/register" class="text-white font-medium">Register</a>
+    <header class="bg-[#030712] ">
+        <div class="grid grid-cols-12 max-w-[1200px] m-auto items-center h-20 px-10 sticky inset-x-0">
+            <div class="col-span-2">
+                <a href="/" class="text-white font-semibold text-2xl">Project.</a>
+                
+            </div>
+            <div class="col-span-10 flex justify-end gap-10">
+                <a href="/login" class="text-white font-medium">Login</a>
+                <a href="/register" class="text-white font-medium">Register</a>
+            </div>
         </div>
     </header>
-    <main class="flex justify-center min-h-screen px-10 pt-20">
-        <div class="text-center">
-            <h1 class="text-5xl font-bold uppercase p-2 text-[#030712]">Lorem ipsum dolor</h1>
-            <p class="text-[#030712]">A aspernatur soluta atque ab itaque fuga veritatis inventore accusamus ex consectetur temporibus dicta laboriosam minima suscipit, nam dolorem! In, nemo necessitatibus.</p>
+    <main class="max-w-[1200px] m-auto">
+        <div class="flex justify-center min-h-screen px-10 pt-20 ">
+            <div class="text-center">
+                <h1 class="text-5xl font-bold uppercase p-2 text-[#030712]">Lorem ipsum dolor</h1>
+                <p class="text-[#030712]">A aspernatur soluta atque ab itaque fuga veritatis inventore accusamus ex consectetur temporibus dicta laboriosam minima suscipit, nam dolorem! In, nemo necessitatibus.</p>
+            </div>
         </div>
     </main>
     
