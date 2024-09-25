@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\Storage;
 
 
 class AuthController extends Controller
@@ -34,10 +36,14 @@ class AuthController extends Controller
 
         // Register
         $user = User::create($fields);
+
+        event(new Registered($user));
+
+        
         // Login
         Auth::login($user);
         // Redirect
-        return redirect()->route('dashboard')->with('greet', 'Welcome to Laravel Inertia Vue app');
+        return redirect()->route('dashboard');
     }
 
     public function login(Request $request) {
@@ -66,4 +72,9 @@ class AuthController extends Controller
  
     return redirect()->route('home');
     }
+    
+        
+    
+    
+
 }

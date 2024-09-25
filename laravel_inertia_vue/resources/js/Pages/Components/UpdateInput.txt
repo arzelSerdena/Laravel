@@ -13,21 +13,16 @@ defineProps({
         type: String,
         default: "text",
     },
-    placeholder: {
-        type: String,
-        default: "",
-    },
     message: String,
 });
 </script>
 
 <template>
     <div class="mb-6">
-        <label class="text-nowrap">{{ name }}</label>
+        <label>{{ name }}</label>
         <input
             :type="type"
             v-model="model"
-            :placeholder="placeholder"
             :class="{ '!ring-red-500': message }"
         />
         <small class="error" v-if="message">{{ message }}</small>

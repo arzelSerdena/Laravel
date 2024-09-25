@@ -1,8 +1,8 @@
 <script setup></script>
 
 <template>
-    <div>
-        <header>
+    <div class="bg-[#d1d5db]">
+        <header class="">
             <nav>
                 <div class="space-x-6">
                     <Link
@@ -13,15 +13,6 @@
                     >
                 </div>
                 <div v-if="$page.props.auth.user" class="space-x-6 flex">
-                    <img
-                        class="avatar"
-                        :src="
-                            $page.props.auth.user.avatar
-                                ? 'storage/' + $page.props.auth.user.avatar
-                                : 'storage/avatars/default.webp'
-                        "
-                        alt=""
-                    />
                     <Link
                         :href="route('dashboard')"
                         class="nav-link"
@@ -31,6 +22,13 @@
                         >Dashboard</Link
                     >
                     <Link
+                        :href="route('settings')"
+                        as="button"
+                        type="button"
+                        class="nav-link"
+                        >Settings</Link
+                    >
+                    <Link
                         :href="route('logout')"
                         method="post"
                         as="button"
@@ -38,6 +36,22 @@
                         class="nav-link"
                         >Logout</Link
                     >
+                    <!-- <img
+                        class="avatar"
+                        :src="
+                            $page.props.auth.user.avatar
+                                ? 'storage/' + $page.props.auth.user.avatar
+                                : 'storage/avatars/default.png'
+                        "
+                        alt=""
+                    /> -->
+
+                    <!-- <button class="headerToggle">
+                        
+                    </button>
+                    <div
+                        class="text-[#030712] text-sm absolute top-[65px] right-[20px] flex flex-col bg-white p-5 z-50 rounded-lg gap-2 shadow-2xl headerHiddenDiv"
+                    ></div> -->
                 </div>
                 <div v-else class="space-x-6">
                     <Link
@@ -59,7 +73,7 @@
                 </div>
             </nav>
         </header>
-        <main class="p-4">
+        <main>
             <slot />
         </main>
     </div>

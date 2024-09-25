@@ -11,28 +11,27 @@
                 
                 <!-- Email Field -->
                 <label for="email" class="text-[#030712] text-sm font-medium">Email</label>
-                <input type="email" id="email" name="email" placeholder="Email" required
-                    class="border rounded-lg p-2 mb-4 focus:outline-none focus:ring-1 focus:ring-[#030712] text-xs">
+                <input type="email" id="email" name="email" placeholder="Email" 
+                    class="border rounded-lg p-2 focus:outline-none focus:ring-1 focus:ring-[#030712] text-xs">
                     
                     <!----error message--->
                     @if ($errors->has('email'))
-                    <span>{{$errors->first('email')}}</span>
-                        
+                    <span class="mt-1  text-red-700 text-xs font-medium">{{$errors->first('email')}}</span>
                     @endif
     
                 <!-- Password Field -->
-                <label for="password" class="text-[#030712] text-sm font-medium">Password</label>
+                <label for="password" class="text-[#030712] text-sm font-medium mt-4">Password</label>
                 <input type="password" id="password" name="password" placeholder="Password" 
-                    class="border rounded-lg p-2 mb-4 focus:outline-none focus:ring-1 focus:ring-[#030712] text-xs">
+                    class="border rounded-lg p-2  focus:outline-none focus:ring-1 focus:ring-[#030712] text-xs">
 
                     <!----error message--->
                     @if ($errors->has('password'))
-                    <span>{{$errors->first('password')}}</span>
+                    <span class="mt-1  text-red-700 text-xs font-medium">{{$errors->first('password')}}</span>
                         
                     @endif
     
                 <!-- Remember Me and Forgot Password -->
-                <div class="flex items-center justify-between mb-4">
+                <div class="flex items-center justify-between mb-3 mt-4">
                     <label class="inline-flex items-center text-[#030712]">
                         <input type="checkbox" class="form-checkbox h-3 w-3 text-[#111827]">
                         <span class="ml-2 text-xs">Remember Me</span>
