@@ -17,11 +17,10 @@ class Admin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (Auth::check() && Auth::user()->is_admin) { // Adjust this condition based on how you check for admin status
+        if (Auth::check() && Auth::user()->is_admin) {
             return $next($request);
         }
 
-        // Redirect to a designated route or back if not an admin
         return redirect()->route('home');
     }
 }

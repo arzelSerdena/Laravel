@@ -1,10 +1,8 @@
 <script setup>
 import { ref, watch } from "vue";
 import PaginationLinks from "./Components/PaginationLinks.vue";
-import { router } from "@inertiajs/vue3";
+import { router, useForm } from "@inertiajs/vue3";
 import { debounce } from "lodash";
-import { useForm } from "@inertiajs/vue3";
-import ToggleRole from "./ToggleRole.vue";
 
 const props = defineProps({
     users: Object,
@@ -44,11 +42,8 @@ const submit = (userId) => {
 };
 
 const editUser = (userId) => {
-    // Redirect to the user settings page with user ID
     router.visit(route("user.edit", userId));
 };
-
-const isProcessing = ref(false);
 </script>
 
 <template>
@@ -69,8 +64,8 @@ const isProcessing = ref(false);
                     <th>Email</th>
                     <th>Registration Date</th>
                     <th>Role</th>
-                    <th v-if="can.delete_user">Edit</th>
-                    <th v-if="can.delete_user">Delete</th>
+                    <th v-if="$page.props.auth.user.is_admin">Edit</th>
+                    <th v-if="$page.props.auth.user.is_admin">Delete</th>
                 </tr>
             </thead>
 
@@ -88,10 +83,9 @@ const isProcessing = ref(false);
                     </td>
                     <td>{{ user.name }}</td>
                     <td>{{ user.email }}</td>
-                    <td>{{ getDate(user.created_at) }}</td>
+                    <td class="text-nowrap">{{ getDate(user.created_at) }}</td>
                     <td>{{ user.is_admin ? "Admin" : "User" }}</td>
-                    <td v-if="can.delete_user">
-                        <!-- Use a link or button to navigate to the edit page -->
+                    <td v-if="$page.props.auth.user.is_admin">
                         <button
                             @click="editUser(user.id)"
                             :disabled="form.processing"
@@ -99,7 +93,7 @@ const isProcessing = ref(false);
                             Edit
                         </button>
                     </td>
-                    <td v-if="can.delete_user">
+                    <td v-if="$page.props.auth.user.is_admin">
                         <form @submit.prevent="submit(user.id)">
                             <button :disabled="form.processing">Delete</button>
                         </form>

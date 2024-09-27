@@ -39,22 +39,6 @@
                         class="nav-link"
                         >Logout</Link
                     >
-                    <!-- <img
-                        class="avatar"
-                        :src="
-                            $page.props.auth.user.avatar
-                                ? 'storage/' + $page.props.auth.user.avatar
-                                : 'storage/avatars/default.png'
-                        "
-                        alt=""
-                    /> -->
-
-                    <!-- <button class="headerToggle">
-                        
-                    </button>
-                    <div
-                        class="text-[#030712] text-sm absolute top-[65px] right-[20px] flex flex-col bg-white p-5 z-50 rounded-lg gap-2 shadow-2xl headerHiddenDiv"
-                    ></div> -->
                 </div>
                 <div v-else class="space-x-6">
                     <Link

@@ -2,9 +2,8 @@
 import { reactive } from "vue";
 import { useForm } from "@inertiajs/vue3";
 import TextInput from "./Components/TextInput.vue";
-import UpdateProfile from "./UpdateProfile.vue";
 
-const props = defineProps(["user"]); // Receiving user as a prop
+const props = defineProps(["user"]);
 
 const form = useForm({
     name: null,
@@ -18,10 +17,6 @@ const form = useForm({
 const change = (e) => {
     form.avatar = e.target.files[0];
     form.preview = URL.createObjectURL(e.target.files[0]);
-};
-
-const submit = (userId) => {
-    form.patch(route("user.update", userId));
 };
 
 const toggleRole = () => {
@@ -52,22 +47,41 @@ const updateAvatar = () => {
         <div
             class="grid grid-cols-12 rounded-2xl p-5 h-full bg-[#f3f4f6] shadow-lg"
         >
+            <!-- Navigation -->
             <div class="col-span-2 flex flex-col gap-2">
-                <a href="" class="text-sm font-medium">Edit Profile</a>
-                <a href="" class="text-xs font-medium pl-5">Update Avatar</a>
+                <a href="#editProfile" class="text-sm font-medium"
+                    >Edit Profile</a
+                >
+                <a href="#updateAvatar" class="text-xs font-medium pl-5"
+                    >Update Avatar</a
+                >
+                <a href="updateName" class="text-xs font-medium pl-5"
+                    >Update Name</a
+                >
 
-                <a href="" class="text-xs font-medium pl-5">Update Name</a>
-                <a href="" class="text-xs font-medium pl-5">Update Bio</a>
-                <a href="" class="text-sm font-medium">Privacy & Security</a>
-                <a href="" class="text-xs font-medium pl-5">Change Password</a>
-                <a href="" class="text-xs font-medium pl-5">Change Email</a>
+                <a href="#privacyAndSecurity" class="text-sm font-medium"
+                    >Privacy & Security</a
+                >
+                <a href="#changeEmail" class="text-xs font-medium pl-5"
+                    >Change Email</a
+                >
+                <a href="#role" class="text-sm font-medium">Role</a>
+                <a
+                    href="#deleteAccount"
+                    class="text-sm font-medium text-red-700"
+                    >Delete Account</a
+                >
             </div>
             <div class="border-l-2 col-span-10 pl-5 h-full">
                 <div id="editProfile">
                     <h3 class="font-semibold">Edit Profile</h3>
 
+                    <!-- Update Avatar -->
                     <form @submit.prevent="updateAvatar" class="flex flex-col">
-                        <div class="flex pl-3 items-center gap-5 my-4">
+                        <div
+                            id="updateAvatar"
+                            class="flex pl-3 items-center gap-5 my-4"
+                        >
                             <div
                                 class="relative w-20 h-20 rounded-full overflow-hidden border border-slate-300 self-center"
                             >
@@ -110,7 +124,6 @@ const updateAvatar = () => {
                                     "
                                 />
                             </div>
-
                             <div class="">
                                 <button
                                     class="cursor-pointer text-xs border border-[#03071288] rounded-lg py-1 px-3 mb-3 hover:border-[#030712] hover:bg-[#030712] hover:text-white ease-in duration-100 w-max"
@@ -133,8 +146,12 @@ const updateAvatar = () => {
                         </div>
                     </form>
 
+                    <!-- Update Name -->
                     <form @submit.prevent="updateName">
-                        <div class="flex pl-3 items-center gap-5 mb-5">
+                        <div
+                            class="flex pl-3 items-center gap-5 mb-5"
+                            id="updateName"
+                        >
                             <TextInput
                                 name="name"
                                 v-model="form.name"
@@ -151,10 +168,13 @@ const updateAvatar = () => {
                         </div>
                     </form>
                 </div>
+
+                <!-- Privacy and Security -->
                 <div id="privacyAndSecurity" class="mb-5">
                     <h3 class="font-semibold">Privacy & Security</h3>
 
-                    <h6 id="updateName" class="text-sm font-medium">
+                    <!-- Change Email -->
+                    <h6 id="updateEmail" class="text-sm font-medium">
                         Change Email
                     </h6>
                     <form @submit.prevent="updateEmail" class="flex flex-col">
@@ -177,7 +197,8 @@ const updateAvatar = () => {
                     </form>
                 </div>
 
-                <form @submit.prevent="toggleRole">
+                <!-- Update Role -->
+                <form @submit.prevent="toggleRole" id="role">
                     <h3 class="text-[#030712] font-semibold">Role</h3>
                     <p class="text-[10px] mb-2 text-justify">
                         Lorem, ipsum dolor sit amet consectetur adipisicing
@@ -202,6 +223,8 @@ const updateAvatar = () => {
                         }}
                     </button>
                 </form>
+
+                <!-- Delete Account -->
                 <form @submit.prevent="deleteUser">
                     <div id="deleteAccount">
                         <h3 class="text-red-700 font-semibold">

@@ -35,7 +35,6 @@ class UserProfileController extends Controller
             $fields['avatar'] = Storage::disk('public')->put('avatars', $request->avatar);
         }
 
-    
         $request->user()->fill($fields);
 
         $request->user()->save();

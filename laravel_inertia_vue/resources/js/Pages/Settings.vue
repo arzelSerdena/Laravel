@@ -2,7 +2,6 @@
 import { reactive } from "vue";
 import { useForm } from "@inertiajs/vue3";
 import TextInput from "./Components/TextInput.vue";
-import UpdateProfile from "./UpdateProfile.vue";
 import SettingsResetPassword from "./Auth/SettingsResetPassword.vue";
 import { route } from "../../../vendor/tightenco/ziggy/src/js";
 import AvatarChange from "./Auth/AvatarChange.vue";
@@ -20,11 +19,6 @@ const props = defineProps({
     users: Object,
 });
 
-const change = (e) => {
-    form.avatar = e.target.files[0];
-    form.preview = URL.createObjectURL(e.target.files[0]);
-};
-
 const submit = () => {
     form.delete(route("profile.destroy"));
 };
@@ -37,19 +31,35 @@ const submit = () => {
         <div
             class="grid grid-cols-12 rounded-2xl p-5 h-full bg-[#f3f4f6] shadow-lg"
         >
+            <!-- Navigation -->
             <div class="col-span-2 flex flex-col gap-2">
-                <a href="" class="text-sm font-medium">Edit Profile</a>
-                <a href="" class="text-xs font-medium pl-5">Update Avatar</a>
+                <a href="#editProfile" class="text-sm font-medium"
+                    >Edit Profile</a
+                >
+                <a href="#updateAvatar" class="text-xs font-medium pl-5"
+                    >Update Avatar</a
+                >
+                <a href="updateName" class="text-xs font-medium pl-5"
+                    >Update Name</a
+                >
 
-                <a href="" class="text-xs font-medium pl-5">Update Name</a>
-                <a href="" class="text-xs font-medium pl-5">Update Bio</a>
-                <a href="" class="text-sm font-medium">Privacy & Security</a>
-                <a href="" class="text-xs font-medium pl-5">Change Password</a>
-                <a href="" class="text-xs font-medium pl-5">Change Email</a>
-                <a href="" class="text-sm font-medium text-red-700"
+                <a href="#privacyAndSecurity" class="text-sm font-medium"
+                    >Privacy & Security</a
+                >
+                <a href="#changePassword" class="text-xs font-medium pl-5"
+                    >Change Password</a
+                >
+                <a href="#changeEmail" class="text-xs font-medium pl-5"
+                    >Change Email</a
+                >
+                <a
+                    href="#deleteAccount"
+                    class="text-sm font-medium text-red-700"
                     >Delete Account</a
                 >
             </div>
+
+            <!-- Edit Profile -->
             <div class="border-l-2 col-span-10 pl-5 h-full">
                 <form
                     @submit.prevent="form.patch(route('settings_name.update'))"
@@ -57,8 +67,10 @@ const submit = () => {
                     <div id="editProfile">
                         <h3 class="font-semibold">Edit Profile</h3>
 
-                        <AvatarChange />
+                        <!-- Update Avatar -->
+                        <AvatarChange id="updateAvatar" />
 
+                        <!-- Update Name -->
                         <div class="flex pl-3 items-center gap-5 mb-5">
                             <TextInput
                                 name="name"
@@ -66,6 +78,7 @@ const submit = () => {
                                 :message="form.errors.name"
                                 :placeholder="$page.props.auth.user.name"
                                 class="flex gap-5 w-full mb-0"
+                                id="updateName"
                             />
                             <button
                                 class="text-xs border rounded-lg py-1.5 px-3 text-nowrap border-[#030712] bg-[#030712] text-white ease-in duration-100"
@@ -77,14 +90,18 @@ const submit = () => {
                     </div>
                 </form>
 
+                <!-- Privacy and Security -->
                 <div id="privacyAndSecurity" class="mb-5">
                     <h3 class="font-semibold">Privacy & Security</h3>
-                    <h6 id="updateAvatar" class="text-sm font-medium">
+
+                    <!-- Change Password -->
+                    <h6 id="changePassword" class="text-sm font-medium">
                         Change Password
                     </h6>
                     <SettingsResetPassword />
 
-                    <h6 id="updateName" class="text-sm font-medium">
+                    <!-- Change Email -->
+                    <h6 id="changeEmail" class="text-sm font-medium">
                         Change Email
                     </h6>
                     <form
@@ -111,6 +128,8 @@ const submit = () => {
                         </button>
                     </form>
                 </div>
+
+                <!-- Delete Account -->
                 <form @submit.prevent="submit">
                     <div id="deleteAccount">
                         <h3 class="text-red-700 font-semibold">

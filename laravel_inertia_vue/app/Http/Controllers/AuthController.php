@@ -6,7 +6,6 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Storage;
 
@@ -71,10 +70,10 @@ class AuthController extends Controller
     public function logout(Request $request) {
         Auth::logout();
  
-    $request->session()->invalidate();
- 
-    $request->session()->regenerateToken();
- 
-    return redirect()->route('home');
+        $request->session()->invalidate();
+    
+        $request->session()->regenerateToken();
+    
+        return redirect()->route('home');
     }
 }

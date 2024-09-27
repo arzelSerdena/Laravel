@@ -7,9 +7,6 @@ const props = defineProps({
 <template>
     <div class="min-h-screen">
         <div class="grid grid-cols-12 gap-4 px-10 py-10 max-w-[1200px] m-auto">
-            <!-- <p class="col-span-12 p-4 bg-green-200 text-xs rounded-lg">
-                {{ $page.props.flash.successful_register }}
-            </p> -->
             <div
                 class="col-span-4 row-span-6 rounded-2xl p-4 bg-[#f3f4f6] shadow-lg flex flex-col items-center"
             >
@@ -21,7 +18,6 @@ const props = defineProps({
                                 ? 'storage/' + $page.props.auth.user.avatar
                                 : 'storage/avatars/default.png'
                         "
-                        alt=""
                     />
                 </div>
                 <h3 class="font-semibold">{{ $page.props.auth.user.name }}</h3>
