@@ -74,29 +74,34 @@ const submit = () => {
                     name="name"
                     v-model="form.name"
                     :message="form.errors.name"
+                    class="mb-4"
                 />
                 <TextInput
                     name="email"
                     type="email"
                     v-model="form.email"
                     :message="form.errors.email"
+                    class="mb-4"
                 />
                 <TextInput
                     name="password"
                     type="password"
                     v-model="form.password"
                     :message="form.errors.password"
+                    class="mb-4"
                 />
                 <TextInput
                     name="confirm password"
                     type="password"
                     v-model="form.password_confirmation"
+                    class="mb-4"
                 />
 
                 <TextInput
                     name="Admin Token"
                     v-model="form.admin_token"
                     :message="form.errors.admin_token"
+                    class="mb-4"
                 />
 
                 <button

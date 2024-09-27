@@ -22,7 +22,7 @@ defineProps({
 </script>
 
 <template>
-    <div class="mb-6">
+    <div class="">
         <label class="text-nowrap">{{ name }}</label>
         <input
             :type="type"

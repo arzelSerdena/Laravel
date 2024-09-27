@@ -29,12 +29,14 @@ const submit = () => {
                     type="email"
                     v-model="form.email"
                     :message="form.errors.email"
+                    class="mb-4"
                 />
                 <TextInput
                     name="password"
                     type="password"
                     v-model="form.password"
                     :message="form.errors.password"
+                    class="mb-4"
                 />
 
                 <!-- Remember Me and Forgot Password -->

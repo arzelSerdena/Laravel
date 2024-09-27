@@ -198,7 +198,7 @@ const updateAvatar = () => {
                 </div>
 
                 <!-- Update Role -->
-                <form @submit.prevent="toggleRole" id="role">
+                <form @submit.prevent="toggleRole" id="role" class="mb-5">
                     <h3 class="text-[#030712] font-semibold">Role</h3>
                     <p class="text-[10px] mb-2 text-justify">
                         Lorem, ipsum dolor sit amet consectetur adipisicing
