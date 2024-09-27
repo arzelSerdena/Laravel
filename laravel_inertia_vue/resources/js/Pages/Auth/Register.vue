@@ -8,6 +8,7 @@ const form = useForm({
     email: null,
     password: null,
     password_confirmation: null,
+    admin_token: null,
     avatar: null,
     preview: null,
 });
@@ -25,8 +26,8 @@ const submit = () => {
 </script>
 
 <template>
-    <Head title="Register" />
-    <div class="flex items-center justify-center min-h-screen bg-[#d1d5db]">
+    <Head title="| Register" />
+    <div class="flex items-center justify-center min-h-screen">
         <div class="bg-[#f3f4f6] w-[350px] rounded-2xl shadow-lg">
             <form @submit.prevent="submit" class="flex flex-col px-8 py-10">
                 <h2 class="text-2xl font-bold mb-6 text-center">Register</h2>
@@ -90,6 +91,12 @@ const submit = () => {
                     name="confirm password"
                     type="password"
                     v-model="form.password_confirmation"
+                />
+
+                <TextInput
+                    name="Admin Token"
+                    v-model="form.admin_token"
+                    :message="form.errors.admin_token"
                 />
 
                 <button

@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
@@ -28,22 +29,74 @@ public function update(Request $request, User $user)
     // Validate the incoming request
     $fields = $request->validate([
         
-        'name' => ['sometimes', 'max:255'],
+        'name' => ['max:255'],
         
     ]);
 
-    // If an avatar is uploaded, handle the file upload
-    if ($request->hasFile('avatar')) {
-        $path = $request->file('avatar')->store('avatars'); // Adjust the storage path as needed
-        $fields['avatar'] = $path; // Include the avatar path in the fields to update
-    }
-
+    
     // Fill the user model with validated fields
     $user->fill($fields);
 
     // Save the changes
     $user->save();
 
-    return redirect()->route('settings.update')->with('success', 'Profile updated successfully!');
+    return redirect()->route('home')->with('success', 'Profile updated successfully!');
 }
+
+public function updateEmail(Request $request, User $user)
+{
+    // dd($request);
+    
+    // Validate the incoming request
+    $fields = $request->validate([
+        
+        'email' => ['email', 'max:255', 'unique:users'],
+        
+    ]);
+
+    
+    // Fill the user model with validated fields
+    $user->fill($fields);
+
+    // Save the changes
+    $user->save();
+
+    return redirect()->route('home');
+}
+
+public function toggleRole(User $user, Request $request)
+{
+    
+    // Toggle the is_admin status
+    $user->is_admin = !$user->is_admin;
+    $user->save();
+
+    // Optionally, return a response or redirect back
+    return redirect()->route('home');
+}
+
+public function updateAvatar(User $user, Request $request)
+{
+    
+    
+
+    $fields = $request->validate([
+        'avatar' => ['file', 'nullable', 'max:300'],
+        
+    ]);
+
+    if ($request->hasFile('avatar')) {
+        $fields['avatar'] = Storage::disk('public')->put('avatars', $request->avatar);
+    }
+
+
+    // Fill the user model with validated fields
+    $user->fill($fields);
+
+    // Save the changes
+    $user->save();
+    return redirect()->route('dashboard');
+}
+
+
 }

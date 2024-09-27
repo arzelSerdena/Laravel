@@ -18,7 +18,7 @@ const submit = () => {
 </script>
 
 <template>
-    <Head title="| Forgot Password" />
+    <Head title="| Login" />
     <div class="flex items-center justify-center min-h-screen">
         <div class="bg-[#f3f4f6] w-[350px] rounded-2xl shadow-lg">
             <form @submit.prevent="submit" class="flex flex-col px-8 py-10">

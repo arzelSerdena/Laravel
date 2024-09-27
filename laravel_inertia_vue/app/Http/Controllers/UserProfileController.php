@@ -14,15 +14,46 @@ class UserProfileController extends Controller
     {
         $fields = $request->validate([
             'avatar' => ['file', 'nullable', 'max:300'],
-            'name' => ['max:255'],
-            'email' => ['email', 'max:255', Rule::unique(User::class)->ignore($request->user()->id)],
-            'password'=> ['confirmed'],
+            
         ]);
 
         $request->user()->fill($fields);
 
         $request->user()->save();
-        return redirect()->route('settings.update');
+        return redirect()->route('settings');
+    }
+
+    public function updateAvatar(Request $request)
+    {
+        
+        $fields = $request->validate([
+            'avatar' => ['file', 'nullable', 'max:300'],
+            
+        ]);
+
+        if ($request->hasFile('avatar')) {
+            $fields['avatar'] = Storage::disk('public')->put('avatars', $request->avatar);
+        }
+
+    
+        $request->user()->fill($fields);
+
+        $request->user()->save();
+        return redirect()->route('dashboard');
+    }
+
+    public function emailUpdate(Request $request)
+    {
+        $fields = $request->validate([
+            
+            'email' => ['email', 'max:255', Rule::unique(User::class)->ignore($request->user()->id)],
+            
+        ]);
+
+        $request->user()->fill($fields);
+
+        $request->user()->save();
+        return redirect()->route('settings');
     }
 
     public function destroy(Request $request) {

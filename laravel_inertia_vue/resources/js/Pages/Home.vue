@@ -4,6 +4,7 @@ import PaginationLinks from "./Components/PaginationLinks.vue";
 import { router } from "@inertiajs/vue3";
 import { debounce } from "lodash";
 import { useForm } from "@inertiajs/vue3";
+import ToggleRole from "./ToggleRole.vue";
 
 const props = defineProps({
     users: Object,
@@ -18,6 +19,7 @@ const form = useForm({
     password_confirmation: null,
     avatar: null,
     preview: null,
+    is_admin: null,
 });
 
 const search = ref(props.searchTerm);
@@ -45,12 +47,14 @@ const editUser = (userId) => {
     // Redirect to the user settings page with user ID
     router.visit(route("user.edit", userId));
 };
+
+const isProcessing = ref(false);
 </script>
 
 <template>
     <Head :title="` | ${$page.component}`" />
 
-    <div class="pt-10">
+    <div class="pt-10 min-h-screen">
         <div class="flex justify-end mb-4">
             <div class="w-1/4">
                 <input type="search" placeholder="Search" v-model="search" />
@@ -64,6 +68,7 @@ const editUser = (userId) => {
                     <th>Name</th>
                     <th>Email</th>
                     <th>Registration Date</th>
+                    <th>Role</th>
                     <th v-if="can.delete_user">Edit</th>
                     <th v-if="can.delete_user">Delete</th>
                 </tr>
@@ -84,21 +89,19 @@ const editUser = (userId) => {
                     <td>{{ user.name }}</td>
                     <td>{{ user.email }}</td>
                     <td>{{ getDate(user.created_at) }}</td>
+                    <td>{{ user.is_admin ? "Admin" : "User" }}</td>
                     <td v-if="can.delete_user">
                         <!-- Use a link or button to navigate to the edit page -->
                         <button
                             @click="editUser(user.id)"
                             :disabled="form.processing"
-                            class=""
                         >
                             Edit
                         </button>
                     </td>
                     <td v-if="can.delete_user">
                         <form @submit.prevent="submit(user.id)">
-                            <button :disabled="form.processing" class="">
-                                Delete
-                            </button>
+                            <button :disabled="form.processing">Delete</button>
                         </form>
                     </td>
                 </tr>

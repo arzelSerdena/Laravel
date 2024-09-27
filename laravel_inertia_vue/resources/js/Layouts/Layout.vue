@@ -26,6 +26,9 @@
                         as="button"
                         type="button"
                         class="nav-link"
+                        :class="{
+                            'bg-slate-700': $page.component === 'Settings',
+                        }"
                         >Settings</Link
                     >
                     <Link
@@ -73,7 +76,7 @@
                 </div>
             </nav>
         </header>
-        <main>
+        <main class="">
             <slot />
         </main>
     </div>
