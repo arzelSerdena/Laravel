@@ -9,12 +9,14 @@ use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
+    // delete user
     public function destroy(User $user) {
         
         $user->delete();
         return redirect()->route('home');
     }
 
+    // Pass user component to admin edit
     public function edit(User $user){
         return inertia('AdminEdit', [
             'user' => $user,
