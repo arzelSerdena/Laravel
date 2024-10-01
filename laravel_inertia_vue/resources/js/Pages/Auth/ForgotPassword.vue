@@ -31,6 +31,7 @@ const submit = () => {
                     type="email"
                     v-model="form.email"
                     :message="form.errors.email"
+                    class="mb-5"
                 />
 
                 <!-- Login Button -->

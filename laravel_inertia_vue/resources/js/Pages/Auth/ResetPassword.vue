@@ -35,6 +35,7 @@ const submit = () => {
                     type="email"
                     v-model="form.email"
                     :message="form.errors.email"
+                    class="mb-5"
                 />
 
                 <TextInput
@@ -42,11 +43,13 @@ const submit = () => {
                     type="password"
                     v-model="form.password"
                     :message="form.errors.password"
+                    class="mb-5"
                 />
                 <TextInput
                     name="confirm password"
                     type="password"
                     v-model="form.password_confirmation"
+                    class="mb-5"
                 />
 
                 <button

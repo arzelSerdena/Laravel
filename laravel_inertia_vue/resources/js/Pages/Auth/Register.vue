@@ -63,7 +63,7 @@ const submit = () => {
 
                         <img
                             class="rounded-full w-20 h-20 object-cover"
-                            :src="form.preview ?? 'storage/avatars/default.png'"
+                            :src="form.preview ?? 'storage/avatars/default.jpg'"
                         />
                     </div>
 

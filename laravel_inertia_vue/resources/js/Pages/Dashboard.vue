@@ -16,7 +16,7 @@ const props = defineProps({
                         :src="
                             $page.props.auth.user.avatar
                                 ? 'storage/' + $page.props.auth.user.avatar
-                                : 'storage/avatars/default.png'
+                                : 'storage/avatars/default.jpg'
                         "
                     />
                 </div>

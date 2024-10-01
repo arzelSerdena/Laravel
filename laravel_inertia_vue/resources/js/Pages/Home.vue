@@ -63,7 +63,7 @@ const editUser = (userId) => {
                     <th>Name</th>
                     <th>Email</th>
                     <th>Registration Date</th>
-                    <th>Role</th>
+                    <th v-if="$page.props.auth.user.is_admin">Role</th>
                     <th v-if="$page.props.auth.user.is_admin">Edit</th>
                     <th v-if="$page.props.auth.user.is_admin">Delete</th>
                 </tr>
@@ -76,7 +76,7 @@ const editUser = (userId) => {
                             :src="
                                 user.avatar
                                     ? 'storage/' + user.avatar
-                                    : 'storage/avatars/default.png'
+                                    : 'storage/avatars/default.jpg'
                             "
                             class="avatar"
                         />
@@ -84,7 +84,9 @@ const editUser = (userId) => {
                     <td>{{ user.name }}</td>
                     <td>{{ user.email }}</td>
                     <td class="text-nowrap">{{ getDate(user.created_at) }}</td>
-                    <td>{{ user.is_admin ? "Admin" : "User" }}</td>
+                    <td v-if="$page.props.auth.user.is_admin">
+                        {{ user.is_admin ? "Admin" : "User" }}
+                    </td>
                     <td v-if="$page.props.auth.user.is_admin">
                         <button
                             @click="editUser(user.id)"

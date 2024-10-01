@@ -120,7 +120,7 @@ const updateAvatar = () => {
                                         form.preview ||
                                         (props.user.avatar
                                             ? '/storage/' + props.user.avatar
-                                            : '/storage/avatars/default.png')
+                                            : '/storage/avatars/default.jpg')
                                     "
                                 />
                             </div>

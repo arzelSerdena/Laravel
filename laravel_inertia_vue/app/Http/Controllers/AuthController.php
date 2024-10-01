@@ -49,15 +49,20 @@ class AuthController extends Controller
 
     public function login(Request $request) {
 
+        
         // Validating the inputs
         $fields = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
         ]);
  
-        // Logic for remember session
-        if (Auth::attempt($fields, $request->remember)) {
+        
+            
+        
+
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password], $request->remember)) {
             $request->session()->regenerate();
+ 
             return redirect()->intended('dashboard');
         }
 

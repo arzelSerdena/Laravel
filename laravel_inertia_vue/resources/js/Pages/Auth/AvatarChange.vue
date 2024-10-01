@@ -52,7 +52,7 @@ const submit = () => {
                     :src="
                         form.preview ??
                         'storage/' + $page.props.auth.user.avatar ??
-                        'storage/avatars/default.png'
+                        'storage/avatars/default.jpg'
                     "
                 />
             </div>
