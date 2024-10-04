@@ -97,6 +97,13 @@ Route::middleware(['auth', Admin::class])->group(function () {
     Route::patch('/home/{user}/role', [AdminController::class, 'toggleRole'])->name('user.toggleRole');
     Route::patch('/home/users/{user}/email', [AdminController::class, 'updateEmail'])->name('user.updateEmail');
 
+    Route::inertia('/register', 'Auth/Register')->name('register');
+
+    // create a new user
+    Route::inertia('/home/new', 'Auth/CreateNewUser')->name('user.createNewUserPage');
+    Route::post('/home/new/user', [AdminController::class, 'createNewUser'])->name('user.createNewUser');
+
+
     // Admin route to delete a user
     Route::delete('/home/{user}', [AdminController::class, 'destroy'])->name('user.destroy');
 });

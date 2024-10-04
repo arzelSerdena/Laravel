@@ -9,10 +9,5 @@ class UserPolicy
     /**
      * Create a new policy instance.
      */
-    public function delete(User $user)
-    {
-        return $user->email === 'kateshaw@example.com';
-    }
 
-    
 }

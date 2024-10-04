@@ -47,34 +47,44 @@ class AuthController extends Controller
         
     }
 
+    // Handle user login
     public function login(Request $request) {
-
-        
-        // Validating the inputs
-        $fields = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required'],
+        // Validate the request input: email must be valid and required, password is required
+        $request->validate([
+            'email' => ['required', 'email'], // validate the email field
+            'password' => ['required'], // validate the password field
         ]);
         
+        // Attempt to log in the user with the provided email and password, and remember if checkbox is checked
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password], $request->remember)) {
+            // Regenerate the session to prevent session fixation attacks
             $request->session()->regenerate();
- 
+
+            // Redirect to the intended page or dashboard after successful login
             return redirect()->intended('dashboard');
         }
 
-        // If there are errors in the credentials
+        // If authentication fails, return back with an error message for the email field
         return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
-        ])->onlyInput('email');
+            'email' => 'The provided credentials do not match our records.', // show error message
+        ])->onlyInput('email'); // keep the email field input intact
     }
 
+
+    // Handle user logout
     public function logout(Request $request) {
+
+        // Log the user out by invalidating their authentication session
         Auth::logout();
- 
+
+        // Invalidate the current session to prevent reuse
         $request->session()->invalidate();
-    
+
+        // Regenerate the session token to protect against CSRF attacks
         $request->session()->regenerateToken();
-    
+
+        // Redirect the user to the home page after logging out
         return redirect()->route('home');
     }
+
 }

@@ -13,7 +13,7 @@ use Illuminate\Auth\Events\PasswordReset;
 
 class ResetPasswordController extends Controller
 {
-        // Show the forgot password form
+    // Show the forgot password form
     public function requestPass()
     {
         // Render the ForgotPassword Inertia view, passing the session status if it exists

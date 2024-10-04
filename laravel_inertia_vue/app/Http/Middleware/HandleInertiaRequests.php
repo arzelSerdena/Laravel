@@ -35,15 +35,20 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
+        // Share data with Inertia views
         return array_merge(parent::share($request), [
+            
+            // Share the authenticated user's data with Inertia, including only specific fields (id, name, avatar)
             'auth.user' => fn () => $request->user()
-                ? $request->user()->only('id', 'name', 'avatar')
-                : null,
+                ? $request->user()->only('id', 'name', 'avatar') // return only these attributes if the user is authenticated
+                : null, // return null if there is no authenticated user
 
-                'flash' => [
-                'greet' => fn () => $request->session()->get('greet')
+            // Share flash data with Inertia views, specifically the 'greet' message from the session
+            'flash' => [
+                'greet' => fn () => $request->session()->get('greet'), // get the 'greet' flash message from the session
             ],
             
         ]);
+
     }
 }

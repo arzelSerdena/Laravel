@@ -50,7 +50,13 @@ const editUser = (userId) => {
     <Head :title="` | ${$page.component}`" />
 
     <div class="pt-10 min-h-screen">
-        <div class="flex justify-end mb-4">
+        <div class="flex justify-between mb-4">
+            <a
+                :href="route('user.createNewUserPage')"
+                class="text-xs border rounded-lg py-1.5 px-3 text-nowrap border-[#030712] bg-[#030712] text-white ease-in duration-100"
+            >
+                <div>Create a User</div>
+            </a>
             <div class="w-1/4">
                 <input type="search" placeholder="Search" v-model="search" />
             </div>
